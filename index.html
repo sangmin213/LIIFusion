@@ -1,1 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LIIFusion: Coarse-to-fine Framework for Generative Multi-Exposure Fusion via Implicit Neural Representation." />
+  <meta property="og:title" content="LIIFusion | ECCV 2026" />
+  <meta property="og:description" content="A coarse-to-fine generative MEF framework combining low-resolution diffusion fusion with LIIF-based high-resolution refinement." />
+  <meta property="og:image" content="assets/images/teaser.png" />
+  <title>LIIFusion | ECCV 2026</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="LIIFusion home">
+        <span class="brand-mark">L</span>
+        <span>LIIFusion</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="nav-links" data-nav-links>
+        <a href="#abstract">Abstract</a>
+        <a href="#comparison">Background</a>
+        <a href="#pipeline">Method</a>
+        <a href="#results">Results</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <h3>Coarse-to-fine Framework for Generative MEF<br class="desktop-break" /> via Implicit Neural Representation</h3>
+      <p class="subtitle">ECCV 2026</p>
+      <!-- <p class="subtitle">LIIFusion balances generative multi-exposure fusion quality and high-resolution efficiency through low-resolution diffusion fusion and pixel-wise implicit refinement.</p> -->
+
+      <div class="authors" aria-label="Authors">
+        <span>Sangmin Han<sup>1,2</sup></span>
+        <span>Jinho Kim<sup>1</sup></span>
+        <span>Jinwoo Kim<sup>1</sup></span>
+        <span>Dongyoung Kim<sup>3</sup></span>
+        <span>Seon Joo Kim<sup>1</sup></span>
+      </div>
+      <p class="affiliations"><sup>1</sup>Yonsei University &nbsp; <sup>2</sup>AI Lab, CTO Division, LG Electronics &nbsp; <sup>3</sup>AI Center - Toronto, Samsung Electronics</p>
+
+      <div class="button-row" aria-label="Project links">
+        <a class="btn" href="#" aria-disabled="true" title="Replace this placeholder with the arXiv URL after release">Paper</a>
+        <a class="btn" href="#" aria-disabled="true" title="Replace this placeholder with the arXiv URL after release">arXiv</a>
+        <a class="btn" href="#" aria-disabled="true" title="Replace this placeholder with the code repository URL after release">Code</a>
+      </div>
+    </section>
+
+    <section class="media-section shell">
+      <figure class="figure-card hero-figure">
+        <img src="assets/images/teaser.png" alt="Teaser comparison of Inputs, HSDS-MEF, UltraFusion, and LIIFusion with zoomed-in regions and runtime/MUSIQ labels." loading="eager" data-lightbox />
+        <figcaption>
+          LIIFusion preserves natural generative fusion quality while recovering fine structures and reducing runtime compared with patch-wise generative MEF.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section shell" id="abstract">
+      <div class="section-heading">
+        <h3>Abstract</h3>
+      </div>
+      <div class="abstract-grid">
+        <div class="abstract-text card">
+          <p>
+            Multi-exposure fusion (MEF) expands the luminance range beyond what a single exposure can capture. Combining images taken at different exposure levels requires handling geometric differences while naturally merging their complementary brightness information. It often demands generative completion where details are missing.
+            Diffusion-based generative methods address these challenges, however, they are computationally expensive and struggle to preserve fine structures in saturated regions. We propose <strong>LIIFusion</strong>, a coarse-to-fine framework that balances fusion quality and efficiency in generative MEF.
+            The coarse stage performs low-resolution generative fusion, enhanced by adaptive exposure correction that recovers structure lost in saturated over-exposed areas. The fine stage adapts local implicit image functions for fusion, enabling resolution-agnostic, pixel-wise refinement capable of restoring fine detail.
+          </p>
+        </div>
+        <div class="takeaway-stack">
+          <article class="mini-card">
+            <span class="stat">New paradigm of Generative MEF</span>
+            <p>global generative synthesis followed by high-resolution implicit refinement.</p>
+          </article>
+          <article class="mini-card">
+            <span class="stat">Reformulation of INR</span>
+            <p>First usage of implicit function for image fusion.</p>
+          </article>
+          <article class="mini-card">
+            <span class="stat">Break limitation of using diffusion</span>
+            <p>3.7x speed-up over exisiting Generative MEF method while achieving SOTA performance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="comparison">
+      <div class="section-heading">
+        <h3>Background</h3>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Conventional MEF</th>
+                <th scope="col">Patch-wise Generative MEF</th>
+                <th scope="col" class="ours-col">Coarse-to-fine Generative MEF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Models</th>
+                <td>CNN, Transformer</td>
+                <td>Diffusion</td>
+                <td class="ours-col">Diffusion, LIIF</td>
+              </tr>
+              <tr>
+                <th scope="row">Dynamic Range</th>
+                <td>Limited (3-4 stops)</td>
+                <td>Extended (9 stops)</td>
+                <td class="ours-col">Extended (9 stops)</td>
+              </tr>
+              <tr>
+                <th scope="row">Motion Handling</th>
+                <td>Static / Mild</td>
+                <td>Dynamic</td>
+                <td class="ours-col">Dynamic</td>
+              </tr>
+              <tr>
+                <th scope="row">Fusion Behavior</th>
+                <td>Regressive</td>
+                <td>Probabilistic</td>
+                <td class="ours-col">Both</td>
+              </tr>
+              <tr>
+                <th scope="row">Speed</th>
+                <td>Fast (~minutes)</td>
+                <td>Slow (~hours)</td>
+                <td class="ours-col">Fast (~minutes)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="pipeline">
+      <div class="section-heading">
+        <h3>Method</h3>
+      </div>
+      <figure class="figure-card">
+        <img src="assets/images/pipeline.png" alt="LIIFusion pipeline comparing patch-wise generative MEF with the proposed coarse-to-fine generative MEF." loading="lazy" data-lightbox />
+        <figcaption>
+          Patch-wise generative MEF requires many diffusion sampling passes. LIIFusion minimizes diffusion usage through low-resolution coarse fusion with adaptive exposure correction, then performs resolution-agnostic pixel-wise detail fusion with a LIIF-based fine stage.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section shell" id="results">
+      <div class="section-heading">
+        <h2>Quantitative Results</h2>
+      </div>
+      <div class="table-card wide-table">
+        <div class="table-scroll">
+          <table class="results-table">
+            <caption>Dynamic RealHDRV and UltraFusion Benchmark results. Higher is better except Time.</caption>
+            <thead>
+              <tr>
+                <th rowspan="2" scope="col">Model</th>
+                <th colspan="5" scope="colgroup">RealHDRV (50 scenes)</th>
+                <th colspan="5" scope="colgroup">UltraFusion Benchmark (100 scenes)</th>
+              </tr>
+              <tr>
+                <th>MUSIQ ↑</th><th>DeQA ↑</th><th>PAQ2PIQ ↑</th><th>HyperIQA ↑</th><th>Time ↓</th>
+                <th>MUSIQ ↑</th><th>DeQA ↑</th><th>PAQ2PIQ ↑</th><th>HyperIQA ↑</th><th>Time ↓</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Defusion</th>
+                <td>56.38</td><td>3.2867</td><td>68.31</td><td>0.4838</td><td>2 min</td>
+                <td>60.11</td><td>3.3529</td><td>71.83</td><td>0.5440</td><td>6 min</td>
+              </tr>
+              <tr>
+                <th scope="row">MEF-LUT</th>
+                <td>62.42</td><td>3.2864</td><td>70.04</td><td>0.5020</td><td>4 sec</td>
+                <td>64.06</td><td>3.2859</td><td>71.80</td><td>0.5103</td><td>8 sec</td>
+              </tr>
+              <tr>
+                <th scope="row">HSDS-MEF</th>
+                <td>61.82</td><td>3.6045</td><td>71.14</td><td>0.5055</td><td>18 min</td>
+                <td>65.23</td><td>3.6662</td><td>73.77</td><td>0.5786</td><td>46 min</td>
+              </tr>
+              <tr>
+                <th scope="row">UltraFusion</th>
+                <td>67.54</td><td><strong>3.8998</strong></td><td>73.39</td><td>0.5834</td><td>101 min</td>
+                <td>68.40</td><td><strong>4.0123</strong></td><td>75.18</td><td>0.6214</td><td>203 min</td>
+              </tr>
+              <tr class="ours-row">
+                <th scope="row">Ours</th>
+                <td><strong>69.52</strong></td><td>3.8908</td><td><strong>74.06</strong></td><td><strong>0.6175</strong></td><td><strong>27 min</strong></td>
+                <td><strong>70.19</strong></td><td>3.9807</td><td><strong>75.59</strong></td><td><strong>0.6467</strong></td><td><strong>59 min</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-heading subheading">
+        <h3>Qualitative Results</h3>
+      </div>
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <img src="assets/images/main_uhdr.png" alt="Qualitative comparison on ultra high dynamic range scenes using MEF-LUT, HSDS-MEF, UltraFusion, and LIIFusion." loading="lazy" data-lightbox />
+          <figcaption>Ultra HDR scenes: LIIFusion maintains stable exposure fusion, structural detail, and natural color appearance.</figcaption>
+        </figure>
+        <figure class="figure-card">
+          <img src="assets/images/main_motion.png" alt="Qualitative comparison on dynamic motion scenes with ghosting and occlusion handling." loading="lazy" data-lightbox />
+          <figcaption>Dynamic motion scenes: LIIFusion suppresses ghost artifacts while restoring missing structural details.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <p>© 2026 LIIFusion. Static project page for GitHub Pages.</p>
+    <!-- <a href="#top">Back to top ↑</a> -->
+  </footer>
+
+  <div class="lightbox" data-lightbox-panel aria-hidden="true" role="dialog" aria-label="Image preview">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image preview">×</button>
+    <img alt="Expanded project figure" data-lightbox-image />
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
 
