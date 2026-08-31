@@ -242,8 +242,6 @@ h1 {
 }
 
 /* Sections */
-.media-section { padding: 10px 0 48px; }
-
 .section {
   position: relative;
   padding: 62px 0;
@@ -880,14 +878,20 @@ tbody tr:last-child td {
 }
 
 /* Background MEF concept figure */
+.background-card {
+  padding-bottom: 24px;
+}
+
 .concept-figure {
-  margin: 28px auto 0;
-  max-width: 1040px;
+  margin: 26px auto 0;
+  max-width: 980px;
 }
 
 .concept-figure img {
   width: 100%;
-  display: block;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   cursor: zoom-in;
 }
 
@@ -944,6 +948,6 @@ tbody tr:last-child td {
 
 @media (max-width: 560px) {
   .concept-figure {
-    margin-top: 20px;
+    margin-top: 18px;
   }
 }
