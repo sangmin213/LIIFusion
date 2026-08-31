@@ -1,75 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="LIIFusion: a coarse-to-fine framework for efficient generative multi-exposure fusion using low-resolution diffusion and implicit high-resolution fusion." />
-  <meta property="og:title" content="LIIFusion | ECCV 2026" />
-  <meta property="og:description" content="Efficient generative multi-exposure fusion through low-resolution diffusion and resolution-agnostic implicit fusion." />
-  <meta property="og:image" content="assets/images/teaser.png" />
-  <title>LIIFusion | ECCV 2026</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="LIIFusion: a coarse-to-fine framework for efficient generative multi-exposure fusion using low-resolution diffusion and implicit high-resolution fusion." name="description"/>
+<meta content="LIIFusion | ECCV 2026" property="og:title"/>
+<meta content="Efficient generative multi-exposure fusion through low-resolution diffusion and resolution-agnostic implicit fusion." property="og:description"/>
+<meta content="assets/images/teaser.png" property="og:image"/>
+<title>LIIFusion | ECCV 2026</title>
+<link href="assets/css/style.css" rel="stylesheet"/>
 </head>
-
 <body>
-  <header class="site-header" id="top">
-    <nav class="nav shell" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="LIIFusion home">
-        <span class="brand-mark" aria-hidden="true"><span class="camera-icon"></span></span>
-        <span>LIIFusion</span>
-      </a>
-
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-
-      <div class="nav-links" data-nav-links>
-        <a href="#abstract">Abstract</a>
-        <a href="#background">Background</a>
-        <a href="#contributions">Contributions</a>
-        <a href="#method">Method</a>
-        <a href="#results">Results</a>
-        <a href="#video">Video</a>
-        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>◐</button>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero shell">
-      <p class="venue">ECCV 2026</p>
-
-      <h1>
-        <span class="title-prefix">LIIFusion:</span>
-        <span class="title-line">Coarse-to-fine Framework for Generative MEF</span>
-        <span class="title-line">via Implicit Neural Representation</span>
-      </h1>
-
-      <div class="authors" aria-label="Authors">
-        <span>Sangmin Han<sup>1,2</sup></span>
-        <span>Jinho Kim<sup>1</sup></span>
-        <span>Jinwoo Kim<sup>1</sup></span>
-        <span>Dongyoung Kim<sup>1</sup></span>
-        <span>Seon Joo Kim<sup>1</sup></span>
-      </div>
-
-      <p class="affiliations">
-        <sup>1</sup>Yonsei University
-        &nbsp;&nbsp;
+<header class="site-header" id="top">
+<nav aria-label="Main navigation" class="nav shell">
+<a aria-label="LIIFusion home" class="brand" href="#top">
+<span aria-hidden="true" class="brand-mark"><span class="camera-icon"></span></span>
+<span>LIIFusion</span>
+</a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle" type="button">☰</button>
+<div class="nav-links" data-nav-links="">
+<a href="#abstract">Abstract</a>
+<a href="#background">Background</a>
+<a href="#contributions">Contributions</a>
+<a href="#method">Method</a>
+<a href="#results">Results</a>
+<a href="#video">Video</a>
+<button aria-label="Toggle color theme" class="theme-toggle" data-theme-toggle="" type="button">◐</button>
+</div>
+</nav>
+</header>
+<main>
+<section class="hero shell">
+<p class="venue">ECCV 2026</p>
+<h1>
+<span class="title-prefix">LIIFusion:</span>
+<span class="title-line">Coarse-to-fine Framework for Generative MEF</span>
+<span class="title-line">via Implicit Neural Representation</span>
+</h1>
+<div aria-label="Authors" class="authors">
+<a class="author-link" href="https://sites.google.com/view/sangmin-han" rel="noopener" target="_blank">Sangmin Han<sup>1,2</sup></a>
+<span>Jinho Kim<sup>1</sup></span>
+<a class="author-link" href="https://sites.google.com/view/hello-jinwoo" rel="noopener" target="_blank">Jinwoo Kim<sup>1</sup></a>
+<a class="author-link" href="https://sites.google.com/view/dong-young-kim/" rel="noopener" target="_blank">Dongyoung Kim<sup>1</sup></a>
+<a class="author-link" href="https://www.ciplab.kr/" rel="noopener" target="_blank">Seon Joo Kim<sup>1</sup></a>
+</div>
+<p class="affiliations">
+<sup>1</sup>Yonsei University
+          
         <sup>2</sup>LG Electronics
       </p>
+<div aria-label="Project links" class="button-row">
+<a class="btn" href="assets/paper/LIIFusion_ECCV2026.pdf" rel="noopener" target="_blank">Paper</a>
+<a class="btn" href="https://github.com/sangmin213/LIIFusion" rel="noopener" target="_blank">Code</a>
+</div>
+</section>
 
-      <div class="button-row" aria-label="Project links">
-        <a class="btn" href="assets/paper/LIIFusion_ECCV2026.pdf" target="_blank" rel="noopener">Paper</a>
-        <a class="btn" href="https://github.com/sangmin213/LIIFusion" target="_blank" rel="noopener">Code</a>
-      </div>
-    </section>
-
-    <section class="section shell" id="abstract">
-      <div class="section-heading">
-        <h2>Abstract</h2>
-      </div>
-
-      <div class="abstract-text card full-width-card">
-        <p>
+<section class="section shell" id="abstract">
+<div class="section-heading">
+<h2>Abstract</h2>
+</div>
+<div class="section-block abstract-text full-width-card">
+<p>
           Multi-exposure fusion (MEF) expands the luminance range beyond what a single exposure
           can capture. Combining images taken at different exposure levels requires handling
           geometric differences while naturally merging their complementary brightness information.
@@ -82,116 +74,84 @@
           local implicit image function into a multi-exposure fusion function conditioned on
           high-resolution OE/UE sources and the coarse output.
         </p>
-      </div>
-    </section>
-
-    <section class="section shell" id="background">
-      <div class="section-heading">
-        <h2>What is Generative MEF?</h2>
-      </div>
-
-      <div class="abstract-text card full-width-card background-card">
-        <p>
+</div>
+</section>
+<section class="section shell" id="background">
+<div class="section-heading">
+<h2>What is Generative MEF?</h2>
+</div>
+<div class="section-block abstract-text full-width-card background-card">
+<p>
           When you take a photo, a camera can capture multiple frames at different exposures
           and integrate them to produce a visually pleasing image. This process is called
           <strong>multi-exposure fusion (MEF)</strong>.
         </p>
-
-        <p>
+<p>
           Conventional MEF aligns and blends information observed across differently exposed
           images. Under <strong>severe saturation, large motion, or occlusion</strong>, however,
           some scene content has no reliable correspondence.
         </p>
-
-        <p>
-          <strong>Generative MEF</strong> uses a generative prior to synthesize such missing
+<p>
+<strong>Generative MEF</strong> uses a generative prior to synthesize such missing
           content instead of relying only on deterministic blending. Existing diffusion-based
           methods achieve strong fusion quality, but high-resolution inference requires
           expensive patch-wise sampling.
         </p>
-
-        <figure class="concept-figure">
-          <img
-            src="assets/images/mef_concept.png"
-            alt="Conceptual illustration of multi-exposure fusion using over-exposed and under-exposed images to produce a fused result."
-            loading="lazy"
-            data-lightbox
-          />
-        </figure>
-      </div>
-    </section>
-
-    <section class="section shell" id="contributions">
-      <div class="section-heading">
-        <h2>Main contributions</h2>
-      </div>
-
-      <div class="contribution-grid">
-        <article class="mini-card contribution-card">
-          <span class="contribution-number">01</span>
-          <span class="stat">Coarse-to-fine Paradigm</span>
-          <p>Decouple luminance range integration and structural detail fusion.</p>
-        </article>
-
-        <article class="mini-card contribution-card">
-          <span class="contribution-number">02</span>
-          <span class="stat">INR as a Fusion Function</span>
-          <p>
+<figure class="concept-figure">
+<img alt="Conceptual illustration of multi-exposure fusion using over-exposed and under-exposed images to produce a fused result." data-lightbox="" loading="lazy" src="assets/images/mef_concept.png"/>
+</figure>
+</div>
+</section>
+<section class="section shell" id="contributions">
+<div class="section-heading">
+<h2>Main contributions</h2>
+</div><div class="section-block"><div class="contribution-grid">
+<article class="mini-card contribution-card">
+<span class="contribution-number">01</span>
+<span class="stat">Coarse-to-fine Paradigm</span>
+<p>Decouple luminance range integration and structural detail fusion.</p>
+</article>
+<article class="mini-card contribution-card">
+<span class="contribution-number">02</span>
+<span class="stat">INR as a Fusion Function</span>
+<p>
             Reformulate LIIF from a super-resolution decoder into a
             multi-exposure conditional fusion function.
           </p>
-        </article>
-
-        <article class="mini-card contribution-card">
-          <span class="contribution-number">03</span>
-          <span class="stat">Efficiency and Performance</span>
-          <p>
+</article>
+<article class="mini-card contribution-card">
+<span class="contribution-number">03</span>
+<span class="stat">Efficiency and Performance</span>
+<p>
             Achieve up to <strong>3.7× faster inference</strong> than prior generative MEF
             while attaining state-of-the-art fusion quality.
           </p>
-        </article>
-      </div>
+</article>
+</div><figure class="figure-card contribution-teaser">
+<img alt="LIIFusion teaser comparison highlighting quality and inference efficiency." data-lightbox="" loading="lazy" src="assets/images/teaser.png"/>
+</figure></div>
 
-      <figure class="figure-card contribution-teaser">
-        <img
-          src="assets/images/teaser.png"
-          alt="LIIFusion teaser comparison highlighting quality and inference efficiency."
-          loading="lazy"
-          data-lightbox
-        />
-      </figure>
-    </section>
 
-    <section class="section shell" id="method">
-      <div class="section-heading">
-        <h2>Method</h2>
-      </div>
-
-      <figure class="figure-card">
-        <img
-          src="assets/images/pipeline.png"
-          alt="Overview of the LIIFusion coarse-to-fine generative MEF pipeline."
-          loading="lazy"
-          data-lightbox
-        />
-        <figcaption>
+</section>
+<section class="section shell" id="method">
+<div class="section-heading">
+<h2>Method</h2>
+</div><div class="section-block"><figure class="figure-card">
+<img alt="Overview of the LIIFusion coarse-to-fine generative MEF pipeline." data-lightbox="" loading="lazy" src="assets/images/pipeline.png"/>
+<figcaption>
           LIIFusion replaces high-resolution patch-wise diffusion with low-resolution
           generative fusion and a LIIF-based high-resolution fine stage.
         </figcaption>
-      </figure>
-
-      <div class="method-detail-grid">
-        <article class="method-card">
-          <div class="method-card-heading">
-            <h3>Adaptive Exposure Correction (AEC)</h3>
-          </div>
-
-          <p class="method-copy">
+</figure><div class="method-detail-grid">
+<article class="method-card">
+<div class="method-card-heading">
+<h3>Adaptive Exposure Correction (AEC)</h3>
+</div>
+<p class="method-copy">
             AEC attenuates severely over-exposed regions before fidelity guidance.
           </p>
-
-          <div class="equation-group" aria-label="Adaptive exposure correction equations">
-            <div class="equation">
+<div aria-label="Adaptive exposure correction equations" class="equation-group">
+<div class="equation">
               L<sup>LR</sup><sub>diff</sub>
               = clip(
               L<sup>LR</sup><sub>oe</sub>
@@ -199,259 +159,206 @@
               L<sup>LR</sup><sub>ue</sub>,
               0, 1 )
             </div>
-
-            <div class="equation">
+<div class="equation">
               W =
               (1 − α · L<sup>LR</sup><sub>diff</sub>)<sup>1/2.2</sup>
-            </div>
-
-            <div class="equation">
+</div>
+<div class="equation">
               I′<sup>LR</sup><sub>oe</sub>
               =
               I<sup>LR</sup><sub>oe</sub> ⊙ W
             </div>
-          </div>
-
-          <p class="method-note method-note-strong">
+</div>
+<p class="method-note method-note-strong">
             The corrected OE image is used for fidelity guidance to enhance fusion quality at low resolution.
           </p>
-        </article>
-
-        <article class="method-card">
-          <div class="method-card-heading">
-            <h3>INR-based Fine Stage</h3>
-          </div>
-
-          <p class="method-copy">
+</article>
+<article class="method-card">
+<div class="method-card-heading">
+<h3>INR-based Fine Stage</h3>
+</div>
+<p class="method-copy">
             Multi-resolution inputs—the low-resolution fused image and the high-resolution exposure images—are fused in a continuous feature domain using INR.
           </p>
-
-          <div class="equation-group" aria-label="INR fusion equation">
-            <div class="equation equation-large">
+<div aria-label="INR fusion equation" class="equation-group">
+<div class="equation equation-large">
               s = f<sub>θ</sub>(
               [z<sub>coarse</sub>, z<sub>fine</sub>],
               [x, c])
             </div>
-          </div>
-
-          <p class="method-note method-note-strong">
+</div>
+<p class="method-note method-note-strong">
             Querying all target coordinates produces the final high-resolution fused image.
           </p>
-        </article>
-      </div>
-    </section>
+</article>
+</div></div>
 
-    <section class="section shell" id="results">
-      <div class="section-heading">
-        <h2>Qualitative Results</h2>
-      </div>
 
-      <div class="figure-grid">
-        <figure class="figure-card">
-          <img
-            src="assets/images/main_uhdr.png"
-            alt="Qualitative comparison on ultra-high dynamic range scenes."
-            loading="lazy"
-            data-lightbox
-          />
-          <figcaption>Ultra-high dynamic range scenes.</figcaption>
-        </figure>
-
-        <figure class="figure-card">
-          <img
-            src="assets/images/main_motion.png"
-            alt="Qualitative comparison on dynamic motion scenes."
-            loading="lazy"
-            data-lightbox
-          />
-          <figcaption>Dynamic motion scenes.</figcaption>
-        </figure>
-      </div>
-
-      <div class="section-heading subheading">
-        <h2>Quantitative Results</h2>
-      </div>
-
-      <div class="table-card wide-table">
-        <div class="table-scroll">
-          <table class="results-table">
-            <caption>
+</section>
+<section class="section shell" id="results">
+<div class="section-heading">
+<h2>Qualitative Results</h2>
+</div><div class="section-block"><div class="figure-grid">
+<figure class="figure-card">
+<img alt="Qualitative comparison on ultra-high dynamic range scenes." data-lightbox="" loading="lazy" src="assets/images/main_uhdr.png"/>
+<figcaption>Ultra-high dynamic range scenes.</figcaption>
+</figure>
+<figure class="figure-card">
+<img alt="Qualitative comparison on dynamic motion scenes." data-lightbox="" loading="lazy" src="assets/images/main_motion.png"/>
+<figcaption>Dynamic motion scenes.</figcaption>
+</figure>
+</div><div class="section-heading subheading">
+<h2>Quantitative Results</h2>
+</div><div class="table-card wide-table">
+<div class="table-scroll">
+<table class="results-table">
+<caption>
               Dynamic RealHDRV and UltraFusion Benchmark. Higher is better except Time.
             </caption>
+<thead>
+<tr>
+<th rowspan="2" scope="col">Model</th>
+<th colspan="5" scope="colgroup">RealHDRV (50 scenes)</th>
+<th colspan="5" scope="colgroup">UltraFusion Benchmark (100 scenes)</th>
+</tr>
+<tr>
+<th>MUSIQ ↑</th>
+<th>DeQA ↑</th>
+<th>PAQ2PIQ ↑</th>
+<th>HyperIQA ↑</th>
+<th class="time-col">Time ↓</th>
+<th>MUSIQ ↑</th>
+<th>DeQA ↑</th>
+<th>PAQ2PIQ ↑</th>
+<th>HyperIQA ↑</th>
+<th class="time-col">Time ↓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Defusion</th>
+<td>56.38</td><td>3.2867</td><td>68.31</td><td>0.4838</td><td class="time-col">2 min</td>
+<td>60.11</td><td>3.3529</td><td>71.83</td><td>0.5440</td><td class="time-col">6 min</td>
+</tr>
+<tr>
+<th scope="row">MEF-LUT</th>
+<td>62.42</td><td>3.2864</td><td>70.04</td><td>0.5020</td><td class="time-col">4 sec</td>
+<td>64.06</td><td>3.2859</td><td>71.80</td><td>0.5103</td><td class="time-col">8 sec</td>
+</tr>
+<tr>
+<th scope="row">HSDS-MEF</th>
+<td>61.82</td><td>3.6045</td><td>71.14</td><td>0.5055</td><td class="time-col">18 min</td>
+<td>65.23</td><td>3.6662</td><td>73.77</td><td>0.5786</td><td class="time-col">46 min</td>
+</tr>
+<tr>
+<th scope="row">UltraFusion</th>
+<td>67.54</td><td><strong>3.8998</strong></td><td>73.39</td><td>0.5834</td><td class="time-col">101 min</td>
+<td>68.40</td><td><strong>4.0123</strong></td><td>75.18</td><td>0.6214</td><td class="time-col">203 min</td>
+</tr>
+<tr class="ours-row">
+<th scope="row">LIIFusion (Ours)</th>
+<td><strong>69.52</strong></td><td>3.8908</td><td><strong>74.06</strong></td><td><strong>0.6175</strong></td><td class="time-col"><strong>27 min</strong></td>
+<td><strong>70.19</strong></td><td>3.9807</td><td><strong>75.59</strong></td><td><strong>0.6467</strong></td><td class="time-col"><strong>59 min</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
 
-            <thead>
-              <tr>
-                <th rowspan="2" scope="col">Model</th>
-                <th colspan="5" scope="colgroup">RealHDRV (50 scenes)</th>
-                <th colspan="5" scope="colgroup">UltraFusion Benchmark (100 scenes)</th>
-              </tr>
-              <tr>
-                <th>MUSIQ ↑</th>
-                <th>DeQA ↑</th>
-                <th>PAQ2PIQ ↑</th>
-                <th>HyperIQA ↑</th>
-                <th class="time-col">Time ↓</th>
-                <th>MUSIQ ↑</th>
-                <th>DeQA ↑</th>
-                <th>PAQ2PIQ ↑</th>
-                <th>HyperIQA ↑</th>
-                <th class="time-col">Time ↓</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <tr>
-                <th scope="row">Defusion</th>
-                <td>56.38</td><td>3.2867</td><td>68.31</td><td>0.4838</td><td class="time-col">2 min</td>
-                <td>60.11</td><td>3.3529</td><td>71.83</td><td>0.5440</td><td class="time-col">6 min</td>
-              </tr>
 
-              <tr>
-                <th scope="row">MEF-LUT</th>
-                <td>62.42</td><td>3.2864</td><td>70.04</td><td>0.5020</td><td class="time-col">4 sec</td>
-                <td>64.06</td><td>3.2859</td><td>71.80</td><td>0.5103</td><td class="time-col">8 sec</td>
-              </tr>
-
-              <tr>
-                <th scope="row">HSDS-MEF</th>
-                <td>61.82</td><td>3.6045</td><td>71.14</td><td>0.5055</td><td class="time-col">18 min</td>
-                <td>65.23</td><td>3.6662</td><td>73.77</td><td>0.5786</td><td class="time-col">46 min</td>
-              </tr>
-
-              <tr>
-                <th scope="row">UltraFusion</th>
-                <td>67.54</td><td><strong>3.8998</strong></td><td>73.39</td><td>0.5834</td><td class="time-col">101 min</td>
-                <td>68.40</td><td><strong>4.0123</strong></td><td>75.18</td><td>0.6214</td><td class="time-col">203 min</td>
-              </tr>
-
-              <tr class="ours-row">
-                <th scope="row">LIIFusion (Ours)</th>
-                <td><strong>69.52</strong></td><td>3.8908</td><td><strong>74.06</strong></td><td><strong>0.6175</strong></td><td class="time-col"><strong>27 min</strong></td>
-                <td><strong>70.19</strong></td><td>3.9807</td><td><strong>75.59</strong></td><td><strong>0.6467</strong></td><td class="time-col"><strong>59 min</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section shell" id="study">
-      <div class="section-heading">
-        <h2>Additional results</h2>
-      </div>
-
-      <div class="additional-results-grid">
-        <div class="additional-results-table">
-          <div class="table-card study-table">
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">Model</th>
-                    <th scope="col">Best-choice rate ↑</th>
-                    <th scope="col">Avg. rank ↓</th>
-                    <th scope="col">Time ↓</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                    <th scope="row">MEF-LUT</th>
-                    <td>3.79%</td>
-                    <td>3.57</td>
-                    <td>0.5 sec</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">HSDS-MEF</th>
-                    <td>13.64%</td>
-                    <td>2.89</td>
-                    <td>2 min 27 sec</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">UltraFusion</th>
-                    <td>21.21%</td>
-                    <td>2.02</td>
-                    <td>12 min 9 sec</td>
-                  </tr>
-
-                  <tr class="ours-row">
-                    <th scope="row">LIIFusion (Ours)</th>
-                    <td><strong>61.36%</strong></td>
-                    <td><strong>1.52</strong></td>
-                    <td><strong>3 min 23 sec</strong></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <p class="additional-results-caption">
+</section>
+<section class="section shell" id="study">
+<div class="section-heading">
+<h2>Additional results</h2>
+</div>
+<div class="section-block additional-results-grid">
+<div class="additional-results-table">
+<div class="table-card study-table">
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th scope="col">Model</th>
+<th scope="col">Best-choice rate ↑</th>
+<th scope="col">Avg. rank ↓</th>
+<th scope="col">Time ↓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">MEF-LUT</th>
+<td>3.79%</td>
+<td>3.57</td>
+<td>0.5 sec</td>
+</tr>
+<tr>
+<th scope="row">HSDS-MEF</th>
+<td>13.64%</td>
+<td>2.89</td>
+<td>2 min 27 sec</td>
+</tr>
+<tr>
+<th scope="row">UltraFusion</th>
+<td>21.21%</td>
+<td>2.02</td>
+<td>12 min 9 sec</td>
+</tr>
+<tr class="ours-row">
+<th scope="row">LIIFusion (Ours)</th>
+<td><strong>61.36%</strong></td>
+<td><strong>1.52</strong></td>
+<td><strong>3 min 23 sec</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="additional-results-caption">
               Human preference study. Inference time is measured on an NVIDIA RTX A5000.
             </p>
-          </div>
-        </div>
-
-        <figure class="figure-card fine-fusion-figure">
-          <img
-            src="assets/images/fine_fusion.png"
-            alt="Comparison of local details in the under-exposed input, UltraFusion, and LIIFusion."
-            loading="lazy"
-            data-lightbox
-          />
-          <figcaption>Effect of coarse-to-fine framework</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section shell" id="video">
-      <div class="section-heading">
-        <h2>Presentation</h2>
-      </div>
-
-      <div class="figure-card presentation-card">
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/asw0QCFyGbo"
-            title="LIIFusion ECCV 2026 presentation"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
+</div>
+</div>
+<figure class="figure-card fine-fusion-figure">
+<img alt="Comparison of local details in the under-exposed input, UltraFusion, and LIIFusion." data-lightbox="" loading="lazy" src="assets/images/fine_fusion.png"/>
+<figcaption>Effect of coarse-to-fine framework</figcaption>
+</figure>
+</div>
+</section>
+<section class="section shell" id="video">
+<div class="section-heading">
+<h2>Presentation</h2>
+</div>
+<div class="section-block figure-card presentation-card">
+<div class="video-frame">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/asw0QCFyGbo" title="LIIFusion ECCV 2026 presentation"></iframe>
+</div>
+</div>
+</section>
+<!-- =========================================================
          CITATION
          ========================================================= -->
-    <section class="section shell" id="citation">
-      <div class="section-heading">
-        <h2>Citation</h2>
-      </div>
-
-      <div class="citation-card">
-        <pre><code>@article{han2026coarse,
+<section class="section shell" id="citation">
+<div class="section-heading">
+<h2>Citation</h2>
+</div>
+<div class="section-block citation-card citation-section-block">
+<pre><code>@article{han2026coarse,
   title={Coarse-to-fine Framework for Generative MEF via Implicit Neural Representation},
   author={Han, Sangmin and Kim, Jinho and Kim, Jinwoo and Kim, Dongyoung and Kim, Seon Joo},
   journal={arXiv preprint arXiv:2607.17611},
   year={2026}
 }</code></pre>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer shell">
-    <p>© 2026 LIIFusion · ECCV 2026</p>
-    <a href="#top">Back on top ↑</a>
-  </footer>
-
-  <div class="lightbox" data-lightbox-panel aria-hidden="true" role="dialog" aria-label="Image preview">
-    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image preview">×</button>
-    <img alt="Expanded project figure" data-lightbox-image />
-  </div>
-
-  <script src="assets/js/main.js"></script>
+</div>
+</section>
+</main>
+<footer class="footer shell">
+<p>© 2026 LIIFusion · ECCV 2026</p>
+<a href="#top">Back on top ↑</a>
+</footer>
+<div aria-hidden="true" aria-label="Image preview" class="lightbox" data-lightbox-panel="" role="dialog">
+<button aria-label="Close image preview" class="lightbox-close" data-lightbox-close="" type="button">×</button>
+<img alt="Expanded project figure" data-lightbox-image=""/>
+</div>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
