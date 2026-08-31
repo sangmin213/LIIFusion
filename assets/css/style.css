@@ -582,8 +582,8 @@ tbody tr:last-child td {
 .additional-results-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(350px, 0.95fr);
-  gap: 38px;
-  align-items: center;
+  gap: 28px;
+  align-items: stretch;
 }
 
 .additional-results-table {
@@ -592,6 +592,14 @@ tbody tr:last-child td {
 
 .study-table {
   margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.study-table .table-scroll {
+  flex: 1;
 }
 
 .study-table table {
@@ -604,7 +612,7 @@ tbody tr:last-child td {
 }
 
 .additional-results-caption {
-  margin: 13px 10px 0;
+  margin: 12px 4px 0;
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.5;
@@ -612,20 +620,26 @@ tbody tr:last-child td {
 
 .fine-fusion-figure {
   margin: 0;
-  text-align: center;
+  height: 100%;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .fine-fusion-figure img {
   width: 100%;
   display: block;
+  border-radius: 12px;
   cursor: zoom-in;
 }
 
 .fine-fusion-figure figcaption {
-  margin-top: 10px;
+  margin-top: 12px;
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 /* Presentation */
