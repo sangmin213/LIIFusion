@@ -578,24 +578,55 @@ tbody tr:last-child td {
   padding: 11px 9px;
 }
 
-/* User Study */
-.study-summary {
+/* Additional Results */
+.additional-results-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-bottom: 18px;
+  grid-template-columns: minmax(0, 1.45fr) minmax(350px, 0.95fr);
+  gap: 38px;
+  align-items: center;
 }
 
-.study-summary .mini-card {
+.additional-results-table {
+  min-width: 0;
+}
+
+.study-table {
+  margin: 0;
+}
+
+.study-table table {
+  min-width: 0;
+}
+
+.study-table th,
+.study-table td {
+  padding: 14px 13px;
+}
+
+.additional-results-caption {
+  margin: 13px 10px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.fine-fusion-figure {
+  margin: 0;
   text-align: center;
-  padding-block: 21px;
 }
 
-.study-summary .stat {
-  font-size: 1.52rem;
+.fine-fusion-figure img {
+  width: 100%;
+  display: block;
+  cursor: zoom-in;
 }
 
-.study-table { margin-top: 0; }
+.fine-fusion-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
 
 /* Presentation */
 .presentation-section {
@@ -627,6 +658,38 @@ tbody tr:last-child td {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+
+/* Citation */
+.citation-card {
+  overflow-x: auto;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-soft) 78%, var(--surface));
+  box-shadow: var(--shadow-sm);
+}
+
+.citation-card pre {
+  margin: 0;
+  white-space: pre;
+}
+
+.citation-card code {
+  color: var(--text-soft);
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.footer a {
+  scroll-behavior: smooth;
 }
 
 /* Footer */
@@ -687,6 +750,18 @@ tbody tr:last-child td {
 }
 
 /* Responsive */
+@media (max-width: 980px) {
+  .additional-results-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .fine-fusion-figure {
+    max-width: 720px;
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 900px) {
   .contribution-grid {
     grid-template-columns: 1fr !important;
@@ -758,6 +833,24 @@ tbody tr:last-child td {
 }
 
 @media (max-width: 560px) {
+  .citation-card {
+    padding: 16px;
+  }
+
+  .citation-card code {
+    font-size: 0.8rem;
+  }
+
+
+  .additional-results-caption {
+    margin-inline: 4px;
+  }
+
+  .fine-fusion-figure figcaption {
+    font-size: 0.88rem;
+  }
+
+
   .shell {
     width: min(calc(100% - 24px), var(--maxw));
   }
@@ -819,10 +912,6 @@ tbody tr:last-child td {
   .mini-card,
   .contribution-card {
     padding: 18px;
-  }
-
-  .study-summary {
-    grid-template-columns: 1fr;
   }
 
   th,
