@@ -836,3 +836,114 @@ tbody tr:last-child td {
     font-size: 0.95rem;
   }
 }
+
+
+/* =========================================================
+   V4 PROJECT PAGE REFINEMENTS
+   ========================================================= */
+
+/* Camera brand icon */
+.brand-mark {
+  position: relative;
+}
+
+.camera-icon {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 13px;
+  border: 2px solid #fff;
+  border-radius: 3px;
+}
+
+.camera-icon::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 3px;
+  left: 3px;
+  top: -5px;
+  border-radius: 2px 2px 0 0;
+  background: #fff;
+}
+
+.camera-icon::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  left: 50%;
+  top: 50%;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Background MEF concept figure */
+.concept-figure {
+  margin: 28px auto 0;
+  max-width: 1040px;
+}
+
+.concept-figure img {
+  width: 100%;
+  display: block;
+  cursor: zoom-in;
+}
+
+/* Teaser beneath contributions */
+.contribution-teaser {
+  margin-top: 28px;
+}
+
+/* Method takeaway text in black / main text color */
+.method-note-strong {
+  color: var(--text);
+}
+
+/* Quantitative table: emphasize inference time columns */
+:root {
+  --time-soft: #fff1df;
+  --time-soft-strong: #ffe4bf;
+}
+
+:root[data-theme="dark"] {
+  --time-soft: #3a2a19;
+  --time-soft-strong: #49331b;
+}
+
+.results-table .time-col {
+  background: var(--time-soft);
+}
+
+.results-table thead .time-col {
+  background: var(--time-soft-strong);
+}
+
+.results-table .ours-row .time-col {
+  background: var(--time-soft);
+}
+
+/* Presentation restored to the original shell/card footprint */
+.presentation-section {
+  padding-bottom: unset;
+}
+
+.presentation-shell {
+  width: unset;
+  margin-inline: unset;
+}
+
+.presentation-card {
+  padding: 14px;
+}
+
+.video-frame {
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 560px) {
+  .concept-figure {
+    margin-top: 20px;
+  }
+}
