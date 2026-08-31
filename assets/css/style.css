@@ -1054,3 +1054,149 @@ tbody tr:last-child td {
     margin-top: 18px;
   }
 }
+
+
+/* =========================================================
+   v9 — Unified section blocks + author links
+   ========================================================= */
+
+.author-link {
+  display: inline-flex;
+  align-items: baseline;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.author-link:hover {
+  color: var(--accent-strong);
+  border-bottom-color: color-mix(in srgb, var(--accent-strong) 40%, transparent);
+}
+
+/* Every section now owns one large visual block below its heading. */
+.section-block {
+  width: 100%;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--line) 94%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
+  box-shadow: var(--shadow);
+}
+
+/* Abstract / Background were previously cards themselves. */
+#abstract .section-block,
+#background .section-block {
+  padding: 28px 31px;
+}
+
+#abstract .section-block::before,
+#background .section-block::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+  opacity: 0.7;
+}
+
+#abstract .section-block,
+#background .section-block {
+  position: relative;
+}
+
+/* Avoid a second heavy shadow inside the unified section block. */
+.section-block > .figure-card,
+.section-block > .table-card,
+.section-block > .presentation-card,
+.section-block .method-card,
+.section-block .mini-card {
+  box-shadow: none;
+}
+
+/* Keep useful sub-panels but make the outer section card visually dominant. */
+#contributions .section-block {
+  padding: 22px;
+}
+
+#contributions .contribution-teaser {
+  margin-top: 24px;
+}
+
+#method .section-block > .figure-card {
+  margin-bottom: 22px;
+}
+
+#method .method-detail-grid {
+  margin-top: 0;
+}
+
+#results .section-block > .figure-grid {
+  margin-top: 0;
+}
+
+#results .section-block > .subheading {
+  margin-top: 42px;
+}
+
+#results .section-block > .table-card {
+  margin-bottom: 0;
+}
+
+#study .section-block {
+  padding: 18px;
+}
+
+#study .additional-results-grid {
+  margin: 0;
+}
+
+#video .section-block {
+  padding: 14px;
+}
+
+#video .section-block > .presentation-card {
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+#citation .citation-section-block {
+  padding: 20px 22px;
+  background: color-mix(in srgb, var(--surface-soft) 78%, var(--surface));
+}
+
+/* Prevent duplicated card styling on reused Abstract/Background containers. */
+#abstract .abstract-text,
+#background .abstract-text {
+  box-shadow: var(--shadow);
+}
+
+/* The background concept image remains part of the same block. */
+#background .concept-figure {
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .section-block {
+    padding: 15px;
+  }
+
+  #abstract .section-block,
+  #background .section-block {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  .section-block {
+    padding: 12px;
+  }
+
+  #abstract .section-block,
+  #background .section-block,
+  #citation .citation-section-block {
+    padding: 16px;
+  }
+}
