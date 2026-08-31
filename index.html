@@ -15,13 +15,14 @@
   <header class="site-header" id="top">
     <nav class="nav shell" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="LIIFusion home">
-        <span class="brand-mark">L</span>
+        <span class="brand-mark" aria-hidden="true"><span class="camera-icon"></span></span>
         <span>LIIFusion</span>
       </a>
 
       <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 
       <div class="nav-links" data-nav-links>
+        <a href="#abstract">Abstract</a>
         <a href="#background">Background</a>
         <a href="#contributions">Contributions</a>
         <a href="#method">Method</a>
@@ -77,6 +78,28 @@
       </figure>
     </section>
 
+    <section class="section shell" id="abstract">
+      <div class="section-heading">
+        <h2>Abstract</h2>
+      </div>
+
+      <div class="abstract-text card full-width-card">
+        <p>
+          Multi-exposure fusion (MEF) expands the luminance range beyond what a single exposure
+          can capture. Combining images taken at different exposure levels requires handling
+          geometric differences while naturally merging their complementary brightness information.
+          It often demands generative completion where details are missing.
+          Diffusion-based generative methods address these challenges; however, they are
+          computationally expensive and struggle to preserve fine structures in saturated regions.
+          We propose <strong>LIIFusion</strong>, a coarse-to-fine framework that balances fusion
+          quality and efficiency in generative MEF. The coarse stage performs low-resolution
+          generative fusion, enhanced by adaptive exposure correction. The fine stage adapts a
+          local implicit image function into a multi-exposure fusion function conditioned on
+          high-resolution OE/UE sources and the coarse output.
+        </p>
+      </div>
+    </section>
+
     <section class="section shell" id="background">
       <div class="section-heading">
         <h2>What is Generative MEF?</h2>
@@ -84,9 +107,15 @@
 
       <div class="abstract-text card full-width-card">
         <p>
-          Conventional multi-exposure fusion aligns and blends information observed
-          across differently exposed images. Under <strong>severe saturation, large motion,
-          or occlusion</strong>, however, some scene content has no reliable correspondence.
+          When you take a photo, a camera can capture multiple frames at different exposures
+          and integrate them to produce a visually pleasing image. This process is called
+          <strong>multi-exposure fusion (MEF)</strong>.
+        </p>
+
+        <p>
+          Conventional MEF aligns and blends information observed across differently exposed
+          images. Under <strong>severe saturation, large motion, or occlusion</strong>, however,
+          some scene content has no reliable correspondence.
         </p>
 
         <p>
@@ -96,11 +125,20 @@
           expensive patch-wise sampling.
         </p>
       </div>
+
+      <figure class="concept-figure">
+        <img
+          src="assets/images/mef_concept.png"
+          alt="Conceptual illustration of multi-exposure fusion using over-exposed and under-exposed images to produce a fused result."
+          loading="lazy"
+          data-lightbox
+        />
+      </figure>
     </section>
 
     <section class="section shell" id="contributions">
       <div class="section-heading">
-        <h2>Three main contributions</h2>
+        <h2>Main contributions</h2>
       </div>
 
       <div class="contribution-grid">
@@ -124,10 +162,19 @@
           <span class="stat">Efficiency and Performance</span>
           <p>
             Achieve up to <strong>3.7× faster inference</strong> than prior generative MEF
-            while delivering state-of-the-art fusion quality.
+            while attaining state-of-the-art fusion quality.
           </p>
         </article>
       </div>
+
+      <figure class="figure-card contribution-teaser">
+        <img
+          src="assets/images/teaser.png"
+          alt="LIIFusion teaser comparison highlighting quality and inference efficiency."
+          loading="lazy"
+          data-lightbox
+        />
+      </figure>
     </section>
 
     <section class="section shell" id="method">
@@ -180,8 +227,8 @@
             </div>
           </div>
 
-          <p class="method-note">
-            The corrected OE image is used for fidelity guidance.
+          <p class="method-note method-note-strong">
+            The corrected OE image is used for fidelity guidance to enhance fusion quality at low resolution.
           </p>
         </article>
 
@@ -191,7 +238,7 @@
           </div>
 
           <p class="method-copy">
-            Coarse and high-resolution exposure features are queried at a target coordinate.
+            Multi-resolution inputs—the low-resolution fused image and the high-resolution exposure images—are fused in a continuous feature domain using INR.
           </p>
 
           <div class="equation-group" aria-label="INR fusion equation">
@@ -202,7 +249,7 @@
             </div>
           </div>
 
-          <p class="method-note">
+          <p class="method-note method-note-strong">
             Querying all target coordinates produces the final high-resolution fused image.
           </p>
         </article>
@@ -258,44 +305,44 @@
                 <th>DeQA ↑</th>
                 <th>PAQ2PIQ ↑</th>
                 <th>HyperIQA ↑</th>
-                <th>Time ↓</th>
+                <th class="time-col">Time ↓</th>
                 <th>MUSIQ ↑</th>
                 <th>DeQA ↑</th>
                 <th>PAQ2PIQ ↑</th>
                 <th>HyperIQA ↑</th>
-                <th>Time ↓</th>
+                <th class="time-col">Time ↓</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
                 <th scope="row">Defusion</th>
-                <td>56.38</td><td>3.2867</td><td>68.31</td><td>0.4838</td><td>2 min</td>
-                <td>60.11</td><td>3.3529</td><td>71.83</td><td>0.5440</td><td>6 min</td>
+                <td>56.38</td><td>3.2867</td><td>68.31</td><td>0.4838</td><td class="time-col">2 min</td>
+                <td>60.11</td><td>3.3529</td><td>71.83</td><td>0.5440</td><td class="time-col">6 min</td>
               </tr>
 
               <tr>
                 <th scope="row">MEF-LUT</th>
-                <td>62.42</td><td>3.2864</td><td>70.04</td><td>0.5020</td><td>4 sec</td>
-                <td>64.06</td><td>3.2859</td><td>71.80</td><td>0.5103</td><td>8 sec</td>
+                <td>62.42</td><td>3.2864</td><td>70.04</td><td>0.5020</td><td class="time-col">4 sec</td>
+                <td>64.06</td><td>3.2859</td><td>71.80</td><td>0.5103</td><td class="time-col">8 sec</td>
               </tr>
 
               <tr>
                 <th scope="row">HSDS-MEF</th>
-                <td>61.82</td><td>3.6045</td><td>71.14</td><td>0.5055</td><td>18 min</td>
-                <td>65.23</td><td>3.6662</td><td>73.77</td><td>0.5786</td><td>46 min</td>
+                <td>61.82</td><td>3.6045</td><td>71.14</td><td>0.5055</td><td class="time-col">18 min</td>
+                <td>65.23</td><td>3.6662</td><td>73.77</td><td>0.5786</td><td class="time-col">46 min</td>
               </tr>
 
               <tr>
                 <th scope="row">UltraFusion</th>
-                <td>67.54</td><td><strong>3.8998</strong></td><td>73.39</td><td>0.5834</td><td>101 min</td>
-                <td>68.40</td><td><strong>4.0123</strong></td><td>75.18</td><td>0.6214</td><td>203 min</td>
+                <td>67.54</td><td><strong>3.8998</strong></td><td>73.39</td><td>0.5834</td><td class="time-col">101 min</td>
+                <td>68.40</td><td><strong>4.0123</strong></td><td>75.18</td><td>0.6214</td><td class="time-col">203 min</td>
               </tr>
 
               <tr class="ours-row">
                 <th scope="row">LIIFusion (Ours)</th>
-                <td><strong>69.52</strong></td><td>3.8908</td><td><strong>74.06</strong></td><td><strong>0.6175</strong></td><td><strong>27 min</strong></td>
-                <td><strong>70.19</strong></td><td>3.9807</td><td><strong>75.59</strong></td><td><strong>0.6467</strong></td><td><strong>59 min</strong></td>
+                <td><strong>69.52</strong></td><td>3.8908</td><td><strong>74.06</strong></td><td><strong>0.6175</strong></td><td class="time-col"><strong>27 min</strong></td>
+                <td><strong>70.19</strong></td><td>3.9807</td><td><strong>75.59</strong></td><td><strong>0.6467</strong></td><td class="time-col"><strong>59 min</strong></td>
               </tr>
             </tbody>
           </table>
@@ -367,46 +414,20 @@
       </div>
     </section>
 
-    <section class="section shell" id="abstract">
+    <section class="section shell" id="video">
       <div class="section-heading">
-        <h2>Abstract</h2>
+        <h2>Presentation</h2>
       </div>
 
-      <div class="abstract-text card full-width-card">
-        <p>
-          Multi-exposure fusion (MEF) expands the luminance range beyond what a single exposure
-          can capture. Combining images taken at different exposure levels requires handling
-          geometric differences while naturally merging their complementary brightness information.
-          It often demands generative completion where details are missing.
-          Diffusion-based generative methods address these challenges; however, they are
-          computationally expensive and struggle to preserve fine structures in saturated regions.
-          We propose <strong>LIIFusion</strong>, a coarse-to-fine framework that balances fusion
-          quality and efficiency in generative MEF. The coarse stage performs low-resolution
-          generative fusion, enhanced by adaptive exposure correction. The fine stage adapts a
-          local implicit image function into a multi-exposure fusion function conditioned on
-          high-resolution OE/UE sources and the coarse output.
-        </p>
-      </div>
-    </section>
-
-    <section class="section presentation-section" id="video">
-      <div class="shell">
-        <div class="section-heading">
-          <h2>Presentation</h2>
-        </div>
-      </div>
-
-      <div class="presentation-shell">
-        <div class="presentation-card">
-          <div class="video-frame">
-            <iframe
-              src="https://www.youtube.com/embed/asw0QCFyGbo"
-              title="LIIFusion ECCV 2026 presentation"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
+      <div class="figure-card presentation-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/asw0QCFyGbo"
+            title="LIIFusion ECCV 2026 presentation"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </section>
