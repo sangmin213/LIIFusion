@@ -42,7 +42,7 @@
 <a class="author-link" href="https://sites.google.com/view/sangmin-han" rel="noopener" target="_blank">Sangmin Han<sup>1,2</sup></a>
 <span>Jinho Kim<sup>1</sup></span>
 <a class="author-link" href="https://sites.google.com/view/hello-jinwoo" rel="noopener" target="_blank">Jinwoo Kim<sup>1</sup></a>
-<a class="author-link" href="https://sites.google.com/view/dong-young-kim/" rel="noopener" target="_blank">Dongyoung Kim<sup>1</sup></a>
+<a class="author-link" href="https://www.dykim.me/" rel="noopener" target="_blank">Dongyoung Kim<sup>1</sup></a>
 <a class="author-link" href="https://www.ciplab.kr/" rel="noopener" target="_blank">Seon Joo Kim<sup>1</sup></a>
 </div>
 <p class="affiliations">
@@ -55,7 +55,6 @@
 <a class="btn" href="https://github.com/sangmin213/LIIFusion" rel="noopener" target="_blank">Code</a>
 </div>
 </section>
-
 <section class="section shell" id="abstract">
 <div class="section-heading">
 <h2>Abstract</h2>
@@ -127,7 +126,7 @@
             while attaining state-of-the-art fusion quality.
           </p>
 </article>
-</div><figure class="figure-card contribution-teaser">
+</div><figure class="contribution-teaser clean-figure">
 <img alt="LIIFusion teaser comparison highlighting quality and inference efficiency." data-lightbox="" loading="lazy" src="assets/images/teaser.png"/>
 </figure></div>
 
@@ -136,7 +135,7 @@
 <section class="section shell" id="method">
 <div class="section-heading">
 <h2>Method</h2>
-</div><div class="section-block"><figure class="figure-card">
+</div><div class="section-block"><figure class="method-pipeline clean-figure">
 <img alt="Overview of the LIIFusion coarse-to-fine generative MEF pipeline." data-lightbox="" loading="lazy" src="assets/images/pipeline.png"/>
 <figcaption>
           LIIFusion replaces high-resolution patch-wise diffusion with low-resolution
@@ -197,19 +196,10 @@
 </section>
 <section class="section shell" id="results">
 <div class="section-heading">
-<h2>Qualitative Results</h2>
-</div><div class="section-block"><div class="figure-grid">
-<figure class="figure-card">
-<img alt="Qualitative comparison on ultra-high dynamic range scenes." data-lightbox="" loading="lazy" src="assets/images/main_uhdr.png"/>
-<figcaption>Ultra-high dynamic range scenes.</figcaption>
-</figure>
-<figure class="figure-card">
-<img alt="Qualitative comparison on dynamic motion scenes." data-lightbox="" loading="lazy" src="assets/images/main_motion.png"/>
-<figcaption>Dynamic motion scenes.</figcaption>
-</figure>
-</div><div class="section-heading subheading">
 <h2>Quantitative Results</h2>
-</div><div class="table-card wide-table">
+</div>
+<div class="section-block">
+<div class="table-card wide-table">
 <div class="table-scroll">
 <table class="results-table">
 <caption>
@@ -263,10 +253,26 @@
 </tbody>
 </table>
 </div>
-</div></div>
+</div>
+</div>
+</section>
 
-
-
+<section class="section shell" id="qualitative-results">
+<div class="section-heading">
+<h2>Qualitative Results</h2>
+</div>
+<div class="section-block">
+<div class="figure-grid qualitative-grid">
+<figure class="qualitative-figure clean-figure">
+<img alt="Qualitative comparison on ultra-high dynamic range scenes." data-lightbox="" loading="lazy" src="assets/images/main_uhdr.png"/>
+<figcaption>Ultra-high dynamic range scenes.</figcaption>
+</figure>
+<figure class="qualitative-figure clean-figure">
+<img alt="Qualitative comparison on dynamic motion scenes." data-lightbox="" loading="lazy" src="assets/images/main_motion.png"/>
+<figcaption>Dynamic motion scenes.</figcaption>
+</figure>
+</div>
+</div>
 </section>
 <section class="section shell" id="study">
 <div class="section-heading">
@@ -318,7 +324,7 @@
             </p>
 </div>
 </div>
-<figure class="figure-card fine-fusion-figure">
+<figure class="fine-fusion-figure clean-figure">
 <img alt="Comparison of local details in the under-exposed input, UltraFusion, and LIIFusion." data-lightbox="" loading="lazy" src="assets/images/fine_fusion.png"/>
 <figcaption>Effect of coarse-to-fine framework</figcaption>
 </figure>
