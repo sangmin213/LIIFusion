@@ -10,7 +10,7 @@
   <meta property="og:title" content="LIIFusion | ECCV 2026" />
   <meta
     property="og:description"
-    content="Efficient generative multi-exposure fusion through low-resolution global synthesis and resolution-agnostic implicit refinement."
+    content="Efficient generative multi-exposure fusion through low-resolution diffusion and resolution-agnostic implicit fusion."
   />
   <meta property="og:image" content="assets/images/teaser.png" />
   <title>LIIFusion | ECCV 2026</title>
@@ -33,7 +33,7 @@
       >☰</button>
 
       <div class="nav-links" data-nav-links>
-        <a href="#motivation">Motivation</a>
+        <a href="#background">Background</a>
         <a href="#contributions">Contributions</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
@@ -60,12 +60,6 @@
         <br class="desktop-break" />
         via Implicit Neural Representation
       </h1>
-
-      <p class="subtitle">
-        <strong>LIIFusion</strong> performs global generative fusion at low resolution
-        and restores high-resolution details through a resolution-agnostic implicit
-        multi-exposure fusion function.
-      </p>
 
       <div class="authors" aria-label="Authors">
         <span>Sangmin Han<sup>1,2</sup></span>
@@ -119,21 +113,19 @@
       <figure class="figure-card hero-figure">
         <img
           src="assets/images/teaser.png"
-          alt="Comparison of multi-exposure fusion methods showing inputs, HSDS-MEF, UltraFusion, and LIIFusion with zoomed regions and runtime comparisons."
+          alt="Comparison of multi-exposure fusion methods showing inputs, HSDS-MEF, UltraFusion, and LIIFusion."
           loading="eager"
           data-lightbox
         />
         <figcaption>
-          <strong>LIIFusion combines the strengths of conventional and generative MEF.</strong>
-          It retains natural generative synthesis and robust motion handling while recovering
-          high-resolution structures more faithfully and running substantially faster than
-          patch-wise generative fusion.
+          LIIFusion achieves high-quality generative fusion with substantially lower
+          high-resolution inference cost than patch-wise generative MEF.
         </figcaption>
       </figure>
     </section>
 
     <!-- =========================================================
-         PRESENTATION VIDEO
+         PRESENTATION
          ========================================================= -->
     <section class="section shell" id="video">
       <div class="section-heading">
@@ -144,149 +136,55 @@
       </div>
 
       <div class="figure-card">
-        <div
-          style="
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            border-radius: var(--radius-md);
-            background: #000;
-          "
-        >
+        <div class="video-frame">
           <iframe
             src="https://www.youtube.com/embed/asw0QCFyGbo"
             title="LIIFusion ECCV 2026 presentation"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-            style="position:absolute;inset:0;width:100%;height:100%;border:0;"
           ></iframe>
         </div>
       </div>
     </section>
 
     <!-- =========================================================
-         MOTIVATION
+         BACKGROUND
          ========================================================= -->
-    <section class="section shell" id="motivation">
+    <section class="section shell" id="background">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Why generative MEF?</p>
-          <h2>From blending exposures to generating missing content</h2>
+          <p class="eyebrow">Background</p>
+          <h2>What is Generative MEF?</h2>
         </div>
       </div>
 
-      <div class="abstract-grid">
+      <div class="abstract-grid compact-grid">
         <div class="abstract-text card">
           <p>
-            Multi-exposure fusion (MEF) combines differently exposed images into a single
-            result with a wider usable luminance range. In real scenes, however, exposure
-            brackets can contain <strong>large motion, occlusion, and severe saturation</strong>.
+            Conventional multi-exposure fusion aligns and blends information observed
+            across differently exposed images. Under <strong>severe saturation, large motion,
+            or occlusion</strong>, however, some scene content has no reliable correspondence.
           </p>
 
           <p>
-            Conventional MEF is efficient and preserves observed pixels well, but it often
-            struggles when correspondences break or image content is completely missing.
-            In those cases, simple alignment and blending are not enough:
-            <strong>the missing structure must be synthesized.</strong>
-          </p>
-
-          <p>
-            Diffusion-based generative MEF provides a strong prior for this problem, but
-            existing approaches process high-resolution images patch by patch. This creates
-            two practical limitations: <strong>high computational cost</strong> and
-            <strong>structural uncertainty</strong> in saturated regions where guidance is weak.
+            <strong>Generative MEF</strong> uses a generative prior to synthesize such missing
+            content instead of relying only on deterministic blending. Existing diffusion-based
+            methods achieve strong fusion quality, but high-resolution inference requires
+            expensive patch-wise sampling.
           </p>
         </div>
 
-        <div class="takeaway-stack">
+        <div class="takeaway-stack compact-stack">
           <article class="mini-card">
-            <span class="stat">Extreme dynamic range</span>
-            <p>
-              Large saturated regions may contain no directly recoverable image evidence.
-            </p>
+            <span class="stat">Why generation?</span>
+            <p>Saturated or occluded content may need to be synthesized rather than blended.</p>
           </article>
 
           <article class="mini-card">
-            <span class="stat">Dynamic motion</span>
-            <p>
-              Moving objects and occlusions make deterministic alignment and blending unreliable.
-            </p>
+            <span class="stat">Main limitation</span>
+            <p>Patch-wise diffusion becomes expensive as the input resolution increases.</p>
           </article>
-
-          <article class="mini-card">
-            <span class="stat">High resolution</span>
-            <p>
-              Patch-wise diffusion scales poorly when the target image becomes large.
-            </p>
-          </article>
-        </div>
-      </div>
-
-      <div class="section-heading subheading">
-        <div>
-          <p class="eyebrow">Design space</p>
-          <h2>Where LIIFusion sits</h2>
-        </div>
-      </div>
-
-      <div class="table-card">
-        <div class="table-scroll">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Conventional MEF</th>
-                <th scope="col">Patch-wise Generative MEF</th>
-                <th scope="col" class="ours-col">LIIFusion: Coarse-to-fine</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <th scope="row">Core models</th>
-                <td>CNN / Transformer</td>
-                <td>Diffusion</td>
-                <td class="ours-col">Diffusion + LIIF</td>
-              </tr>
-
-              <tr>
-                <th scope="row">Dynamic range</th>
-                <td>Limited (3–4 stops)</td>
-                <td>Extended (9 stops)</td>
-                <td class="ours-col">Extended (9 stops)</td>
-              </tr>
-
-              <tr>
-                <th scope="row">Motion handling</th>
-                <td>Static / Mild</td>
-                <td>Dynamic</td>
-                <td class="ours-col">Dynamic</td>
-              </tr>
-
-              <tr>
-                <th scope="row">Fusion behavior</th>
-                <td>Regressive</td>
-                <td>Probabilistic</td>
-                <td class="ours-col">Generative + Regressive</td>
-              </tr>
-
-              <tr>
-                <th scope="row">High-res inference</th>
-                <td>Efficient</td>
-                <td>Patch-wise diffusion</td>
-                <td class="ours-col">Pixel-wise implicit refinement</td>
-              </tr>
-
-              <tr>
-                <th scope="row">Typical speed</th>
-                <td>Fast (~minutes)</td>
-                <td>Slow (~hours)</td>
-                <td class="ours-col">Fast (~minutes)</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </section>
@@ -297,53 +195,37 @@
     <section class="section shell" id="contributions">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Core idea</p>
-          <h2>Generate globally, refine locally</h2>
+          <p class="eyebrow">Core Idea</p>
+          <h2>Three main contributions</h2>
         </div>
       </div>
 
-      <div class="abstract-grid">
-        <div class="abstract-text card">
+      <div class="contribution-grid">
+        <article class="mini-card contribution-card">
+          <span class="contribution-number">01</span>
+          <span class="stat">Coarse-to-fine Generative MEF</span>
           <p>
-            Our key observation is that the expensive generative prior does not need to operate
-            at the final resolution. Diffusion is most valuable for resolving
-            <strong>global exposure inconsistencies, motion, occlusion, and missing content</strong>.
-            Once the global structure is established, high-resolution details can be recovered
-            from the original exposure pair using a lightweight coordinate-based fusion function.
+            Low-resolution diffusion fusion followed by high-resolution implicit fusion.
           </p>
+        </article>
 
+        <article class="mini-card contribution-card">
+          <span class="contribution-number">02</span>
+          <span class="stat">INR as a Fusion Function</span>
           <p>
-            LIIFusion therefore separates generative MEF into two complementary stages:
-            a <strong>low-resolution generative coarse stage</strong> and a
-            <strong>high-resolution implicit fine stage</strong>.
+            We reformulate LIIF from a super-resolution decoder into a
+            multi-exposure conditional fusion function.
           </p>
-        </div>
+        </article>
 
-        <div class="takeaway-stack">
-          <article class="mini-card">
-            <span class="stat">1. Coarse-to-fine Generative MEF</span>
-            <p>
-              A new generative MEF paradigm that moves diffusion to low resolution and
-              performs high-resolution refinement separately.
-            </p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">2. INR as a Fusion Function</span>
-            <p>
-              We reformulate LIIF from a super-resolution decoder into a
-              coordinate-conditioned multi-exposure fusion function.
-            </p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">3. Practical Generative Fusion</span>
-            <p>
-              Adaptive exposure correction improves structural reliability in saturated regions,
-              while the full framework achieves up to 3.5× faster inference than prior generative MEF.
-            </p>
-          </article>
-        </div>
+        <article class="mini-card contribution-card">
+          <span class="contribution-number">03</span>
+          <span class="stat">Efficient Generative Fusion</span>
+          <p>
+            Up to <strong>3.5× faster</strong> inference than prior generative MEF
+            while maintaining strong perceptual quality.
+          </p>
+        </article>
       </div>
     </section>
 
@@ -354,148 +236,88 @@
       <div class="section-heading">
         <div>
           <p class="eyebrow">Method</p>
-          <h2>LIIFusion pipeline</h2>
+          <h2>LIIFusion</h2>
         </div>
       </div>
 
+      <!-- Pipeline overview -->
       <figure class="figure-card">
         <img
           src="assets/images/pipeline.png"
-          alt="LIIFusion pipeline comparing previous patch-wise generative MEF with the proposed coarse-to-fine framework."
+          alt="Overview of the LIIFusion coarse-to-fine generative MEF pipeline."
           loading="lazy"
           data-lightbox
         />
         <figcaption>
-          Previous generative MEF repeatedly applies diffusion to high-resolution patches.
-          LIIFusion instead performs generative fusion on a downsampled exposure pair,
-          then queries a LIIF-based fusion function to reconstruct the final image at the target resolution.
+          <strong>Pipeline overview.</strong>
+          LIIFusion replaces high-resolution patch-wise diffusion with low-resolution
+          generative fusion and a LIIF-based high-resolution fine stage.
         </figcaption>
       </figure>
 
-      <div class="section-heading subheading">
-        <div>
-          <p class="eyebrow">Stage 1</p>
-          <h2>Coarse fusion: use diffusion where generation matters</h2>
-        </div>
-      </div>
+      <!-- AEC + INR only -->
+      <div class="method-detail-grid">
+        <article class="method-card">
+          <div class="method-card-heading">
+            <p class="eyebrow">Adaptive Exposure Correction</p>
+            <h3>AEC</h3>
+          </div>
 
-      <div class="abstract-grid">
-        <div class="abstract-text card">
-          <p>
-            The over-exposed (OE) and under-exposed (UE) inputs are first downsampled.
-            A diffusion-based generative MEF model then performs fusion near its native
-            operating resolution, allowing the model to reason over the
-            <strong>global scene context</strong> without expensive high-resolution patch sampling.
+          <p class="method-copy">
+            AEC attenuates severely over-exposed regions before fidelity guidance.
+            From LR luminance channels:
           </p>
 
-          <p>
-            This stage handles the parts of MEF that benefit most from a generative prior:
-            exposure inconsistencies, motion artifacts, occlusions, and regions where image
-            content must be synthesized.
+          <div class="equation-group" aria-label="Adaptive exposure correction equations">
+            <div class="equation">
+              L<sup>LR</sup><sub>diff</sub>
+              = clip(
+              L<sup>LR</sup><sub>oe</sub>
+              −
+              L<sup>LR</sup><sub>ue</sub>,
+              0, 1 )
+            </div>
+
+            <div class="equation">
+              W =
+              (1 − α · L<sup>LR</sup><sub>diff</sub>)<sup>1/2.2</sup>
+            </div>
+
+            <div class="equation">
+              I′<sup>LR</sup><sub>oe</sub>
+              =
+              I<sup>LR</sup><sub>oe</sub> ⊙ W
+            </div>
+          </div>
+
+          <p class="method-note">
+            The corrected OE image replaces the original OE image during fidelity guidance.
           </p>
-        </div>
+        </article>
 
-        <div class="takeaway-stack">
-          <article class="mini-card">
-            <span class="stat">Whole-scene context</span>
-            <p>
-              Coarse fusion sees the downsampled scene globally instead of independently
-              synthesizing many high-resolution patches.
-            </p>
-          </article>
+        <article class="method-card">
+          <div class="method-card-heading">
+            <p class="eyebrow">Fine Stage</p>
+            <h3>INR-based Fusion</h3>
+          </div>
 
-          <article class="mini-card">
-            <span class="stat">Minimal diffusion usage</span>
-            <p>
-              The expensive sampling stage is restricted to the low-resolution representation.
-            </p>
-          </article>
-        </div>
-      </div>
-
-      <div class="section-heading subheading">
-        <div>
-          <p class="eyebrow">Adaptive Exposure Correction</p>
-          <h2>Preserve structure before generative fusion</h2>
-        </div>
-      </div>
-
-      <div class="abstract-grid">
-        <div class="abstract-text card">
-          <p>
-            Low-resolution fusion is efficient, but severe over-exposure can erase fine structure
-            before the diffusion model sees it. In saturated regions, weak fidelity guidance can
-            cause the coarse model to generate blurred or distorted structures.
+          <p class="method-copy">
+            Coarse and high-resolution exposure features are queried at a target coordinate
+            and decoded by a lightweight MLP:
           </p>
 
-          <p>
-            <strong>Adaptive Exposure Correction (AEC)</strong> estimates the luminance difference
-            between OE and UE inputs and selectively attenuates excessively bright OE regions.
-            The corrected OE image provides a more reliable structural cue during generative fusion.
+          <div class="equation-group" aria-label="INR fusion equation">
+            <div class="equation equation-large">
+              s = f<sub>θ</sub>(
+              [z<sub>coarse</sub>, z<sub>fine</sub>],
+              [x, c])
+            </div>
+          </div>
+
+          <p class="method-note">
+            Querying all target coordinates produces the final high-resolution fused image.
           </p>
-        </div>
-
-        <div class="takeaway-stack">
-          <article class="mini-card">
-            <span class="stat">Before AEC</span>
-            <p>
-              Saturated signs, maps, and bright textures can collapse at low resolution.
-            </p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">After AEC</span>
-            <p>
-              The coarse result retains stronger structural cues for the subsequent fine stage.
-            </p>
-          </article>
-        </div>
-      </div>
-
-      <div class="section-heading subheading">
-        <div>
-          <p class="eyebrow">Stage 2</p>
-          <h2>Fine fusion: reformulating LIIF for multi-exposure fusion</h2>
-        </div>
-      </div>
-
-      <div class="abstract-grid">
-        <div class="abstract-text card">
-          <p>
-            The fine stage is not a conventional super-resolution module.
-            It receives features from the <strong>coarse fused image</strong> together with
-            features extracted from the original <strong>high-resolution OE and UE inputs</strong>.
-          </p>
-
-          <p>
-            For each target coordinate, a lightweight implicit decoder predicts the final RGB value
-            using both global coarse context and local high-resolution exposure evidence.
-            In other words, LIIF is adapted from an image representation function into a
-            <strong>multi-exposure conditional fusion function</strong>.
-          </p>
-
-          <p>
-            Because prediction is coordinate-based, the same learned function can be queried at
-            different target resolutions without requiring a fixed integer upsampling scale.
-          </p>
-        </div>
-
-        <div class="takeaway-stack">
-          <article class="mini-card">
-            <span class="stat">Coarse feature</span>
-            <p>Provides globally coherent generative context.</p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">OE / UE features</span>
-            <p>Recover high-frequency details from the original exposures.</p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">Continuous query</span>
-            <p>Produces pixel-wise fusion at arbitrary target coordinates.</p>
-          </article>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -506,7 +328,7 @@
       <div class="section-heading">
         <div>
           <p class="eyebrow">Results</p>
-          <h2>High dynamic range and dynamic motion</h2>
+          <h2>Qualitative Results</h2>
         </div>
       </div>
 
@@ -514,36 +336,32 @@
         <figure class="figure-card">
           <img
             src="assets/images/main_uhdr.png"
-            alt="Qualitative comparison on ultra-high dynamic range scenes using MEF-LUT, HSDS-MEF, UltraFusion, and LIIFusion."
+            alt="Qualitative comparison on ultra-high dynamic range scenes."
             loading="lazy"
             data-lightbox
           />
           <figcaption>
-            <strong>Ultra-high dynamic range scenes.</strong>
-            LIIFusion preserves natural generative fusion while recovering fine structural
-            details that can be weakened by low-resolution or patch-wise generation.
+            Ultra-high dynamic range scenes.
           </figcaption>
         </figure>
 
         <figure class="figure-card">
           <img
             src="assets/images/main_motion.png"
-            alt="Qualitative comparison on dynamic motion scenes showing ghosting and occlusion handling."
+            alt="Qualitative comparison on dynamic motion scenes."
             loading="lazy"
             data-lightbox
           />
           <figcaption>
-            <strong>Dynamic motion scenes.</strong>
-            Global coarse generation helps resolve large motion and occlusion, while the fine
-            fusion stage restores high-resolution structures from the exposure pair.
+            Dynamic motion scenes.
           </figcaption>
         </figure>
       </div>
 
       <div class="section-heading subheading">
         <div>
-          <p class="eyebrow">Quantitative evaluation</p>
-          <h2>Quality with substantially lower generative cost</h2>
+          <p class="eyebrow">Benchmark</p>
+          <h2>Quantitative Results</h2>
         </div>
       </div>
 
@@ -656,46 +474,29 @@
     <section class="section shell" id="study">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Human preference study</p>
-          <h2>Users prefer the coarse-to-fine result</h2>
+          <p class="eyebrow">Human Preference Study</p>
+          <h2>User Study</h2>
         </div>
       </div>
 
-      <div class="abstract-grid">
-        <div class="abstract-text card">
-          <p>
-            We additionally evaluate perceptual preference with
-            <strong>22 participants</strong>. Participants rank four anonymized MEF results.
-            LIIFusion receives the highest best-choice rate and the best average rank,
-            while remaining much faster than UltraFusion.
-          </p>
+      <div class="study-summary">
+        <article class="mini-card">
+          <span class="stat">61.36%</span>
+          <p>Best-choice rate</p>
+        </article>
 
-          <p>
-            This result supports the central goal of LIIFusion:
-            reducing the computational burden of generative MEF
-            <strong>without sacrificing the perceptual advantages of generative fusion</strong>.
-          </p>
-        </div>
+        <article class="mini-card">
+          <span class="stat">1.52</span>
+          <p>Average rank</p>
+        </article>
 
-        <div class="takeaway-stack">
-          <article class="mini-card">
-            <span class="stat">61.36%</span>
-            <p>Best-choice rate for LIIFusion.</p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">1.52</span>
-            <p>Best average rank among the four compared methods.</p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">22 participants</span>
-            <p>Four anonymized methods ranked by human observers.</p>
-          </article>
-        </div>
+        <article class="mini-card">
+          <span class="stat">22</span>
+          <p>Participants</p>
+        </article>
       </div>
 
-      <div class="table-card" style="margin-top: 22px;">
+      <div class="table-card study-table">
         <div class="table-scroll">
           <table>
             <caption>
@@ -746,52 +547,6 @@
     </section>
 
     <!-- =========================================================
-         TAKEAWAY
-         ========================================================= -->
-    <section class="section shell" id="takeaway">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Takeaway</p>
-          <h2>A practical path toward generative MEF</h2>
-        </div>
-      </div>
-
-      <div class="abstract-grid">
-        <div class="abstract-text card">
-          <p>
-            <strong>LIIFusion decouples generation from high-resolution reconstruction.</strong>
-            Diffusion is used at low resolution to solve the hard global ambiguities of MEF,
-            while an implicit fusion function efficiently brings back high-resolution evidence
-            from the original exposures.
-          </p>
-
-          <p>
-            The resulting framework preserves the advantages of generative MEF—
-            natural synthesis, robustness to large motion, and completion of saturated regions—
-            while substantially improving high-resolution efficiency and structural detail.
-          </p>
-        </div>
-
-        <div class="takeaway-stack">
-          <article class="mini-card">
-            <span class="stat">Global generation</span>
-            <p>Resolve motion, saturation, and missing content at low resolution.</p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">Local detail fusion</span>
-            <p>Recover HR information directly from OE and UE inputs.</p>
-          </article>
-
-          <article class="mini-card">
-            <span class="stat">Up to 3.5× faster</span>
-            <p>Make generative MEF considerably more practical at high resolution.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
          ABSTRACT
          ========================================================= -->
     <section class="section shell" id="abstract">
@@ -812,12 +567,11 @@
           computationally expensive and struggle to preserve fine structures in saturated regions.
           We propose <strong>LIIFusion</strong>, a coarse-to-fine framework that balances fusion
           quality and efficiency in generative MEF. The coarse stage performs low-resolution
-          generative fusion, enhanced by adaptive exposure correction that recovers structure lost
-          in saturated over-exposed areas. The fine stage adapts a local implicit image function
-          into a multi-exposure fusion function: conditioned on the high-resolution OE/UE sources
-          and the coarse output, it queries arbitrary target coordinates and fuses source evidence
-          regardless of the input resolution. LIIFusion achieves up to 3.5× speed-up over existing
-          generative methods while maintaining or improving structural fidelity and perceptual quality.
+          generative fusion, enhanced by adaptive exposure correction. The fine stage adapts a
+          local implicit image function into a multi-exposure fusion function conditioned on
+          high-resolution OE/UE sources and the coarse output. LIIFusion achieves up to 3.5×
+          speed-up over existing generative methods while maintaining or improving structural
+          fidelity and perceptual quality.
         </p>
       </div>
     </section>
