@@ -1303,3 +1303,82 @@ tbody tr:last-child td {
     gap: 22px;
   }
 }
+
+
+/* =========================================================
+   v11 — keep one rounded box per image, remove only inner image border
+   ========================================================= */
+
+.single-box-figure {
+  margin: 0;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--line) 94%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.single-box-figure img {
+  width: 100%;
+  display: block;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: zoom-in;
+}
+
+.single-box-figure figcaption {
+  margin-top: 11px;
+  padding-inline: 1px;
+  color: var(--muted);
+  font-size: 0.91rem;
+  line-height: 1.5;
+}
+
+/* Main contribution teaser */
+#contributions .contribution-teaser {
+  margin-top: 24px;
+}
+
+/* Method pipeline */
+#method .method-pipeline {
+  margin-bottom: 22px;
+}
+
+/* Qualitative Results: each result image has exactly one rounded card */
+#qualitative-results .qualitative-grid {
+  gap: 24px;
+}
+
+#qualitative-results .qualitative-figure {
+  padding: 14px;
+}
+
+/* Additional results: restore a single rounded card around the right image */
+#study .fine-fusion-figure {
+  height: 100%;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--line) 94%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
+  box-shadow: var(--shadow-sm);
+}
+
+#study .fine-fusion-figure img {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* Neutralize v10 rules that removed these cards */
+.clean-figure {
+  all: unset;
+}
+
+@media (max-width: 860px) {
+  .single-box-figure {
+    padding: 12px;
+  }
+}
