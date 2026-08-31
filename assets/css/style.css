@@ -1200,3 +1200,106 @@ tbody tr:last-child td {
     padding: 16px;
   }
 }
+
+
+/* =========================================================
+   v10 — remove selected nested rounded image boxes
+   ========================================================= */
+
+/* Generic figure inside an already-rounded section block */
+.clean-figure {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.clean-figure img {
+  width: 100%;
+  display: block;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: zoom-in;
+}
+
+.clean-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.91rem;
+  line-height: 1.5;
+}
+
+/* 1. Main Contributions teaser */
+#contributions .contribution-teaser {
+  margin-top: 24px;
+}
+
+/* 2. Method pipeline */
+#method .method-pipeline {
+  margin-bottom: 22px;
+}
+
+/* Keep the two method detail cards below the pipeline */
+#method .method-detail-grid {
+  margin-top: 0;
+}
+
+/* 3–5. Results are now independent sections */
+#results .section-block {
+  padding: 20px;
+}
+
+#results .section-block > .table-card {
+  margin: 0;
+}
+
+/* Remove old combined-results subheading behavior */
+#results .section-block > .subheading {
+  display: none;
+}
+
+#qualitative-results .section-block {
+  padding: 20px;
+}
+
+#qualitative-results .qualitative-grid {
+  gap: 28px;
+}
+
+#qualitative-results .qualitative-figure + .qualitative-figure {
+  margin-top: 0;
+}
+
+/* 6. Additional results right-side image */
+#study .fine-fusion-figure {
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  justify-content: center;
+}
+
+#study .fine-fusion-figure img {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+#study .fine-fusion-figure figcaption {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  #qualitative-results .qualitative-grid {
+    gap: 22px;
+  }
+}
