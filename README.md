@@ -3,6 +3,16 @@
 Official implementation of **LIIFusion: Coarse-to-fine Framework for
 Generative MEF via Implicit Neural Representation** (ECCV 2026).
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2607.17611">arXiv</a> |
+  <a href="https://arxiv.org/pdf/2607.17611">Paper</a> |
+  <a href="https://sangmin213.github.io/LIIFusion/">Project Page</a>
+</p>
+
+<p align="center">
+  <img src="assets/images/teaser.png" alt="LIIFusion teaser" width="100%">
+</p>
+
 LIIFusion combines a frozen [UltraFusion](https://github.com/OpenImagingLab/UltraFusion)
 coarse fusion stage with a trainable SwinIR-LIIF fine fusion module. This
 repository contains the complete fine-module training path and end-to-end
