@@ -1,0 +1,85 @@
+train_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: ./load/train/Label # ./load/SICE/Dataset_Part1/Label
+      repeat: 20
+      cache: in_memory
+      oe_path: ./load/train/OE # ./load/SICE/Dataset_Part1/OE
+      ue_path: ./load/train/UE # ./load/SICE/Dataset_Part1/UE
+      # motion_path: ./load/SICE/ultrafusion_mask_subset
+  wrapper:
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48
+      scale_max: 4
+      augment: true
+      sample_q: 2304
+      guide_p_type: rgb # mscn
+      guide_p_size: 19 # 3x3
+  batch_size: 16 # 16
+
+val_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: ./load/valid/Label
+      first_k: 30
+      repeat: 1
+      cache: in_memory
+      oe_path: ./load/valid/OE
+      ue_path: ./load/valid/UE
+  wrapper:
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48
+      scale_max: 4
+      sample_q: 2304
+      guide_p_type: rgb # mscn
+      guide_p_size: 19 # 3x3
+  batch_size: 16
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}
+
+model:
+  name: liif
+  args:
+    encoder_spec:
+      name: swinir
+      args:
+        no_upsampling: true
+    imnet_spec:
+      name: mlp
+      args:
+        out_dim: 3
+        hidden_list: [256, 256, 256, 256]
+    guidenet_spec:
+      name: guidenet
+      args:
+        model_type: conv
+        in_dim: 6
+        out_dim: 64
+        hidden_dim: [16, 32, 32]
+        kernel_size: [7, 3, 3, 3] # 3, 3, 3
+        stride_lst: [2, 1, 1, 1] # 1, 1, 1
+        padding_lst: [0, 0, 0, 0] # 1, 1, 0
+        dilation_lst: [1, 1, 1, 1]
+
+optimizer:
+  name: adam
+  args:
+    lr: 1.e-4 # 1.e-4
+epoch_max: 1000
+multi_step_lr:
+  milestones: [200, 400, 600, 800]
+  gamma: 0.5
+
+epoch_val: 1
+epoch_save: 100
+
+# resume: ./save/_train_swinir-liif/epoch-last.pth
+# resume: ./save/no_opt_1919_777layer/epoch-last.pth
+# resume: ./save/no_instance_norm/epoch-last.pth
+resume:
